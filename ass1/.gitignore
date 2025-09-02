@@ -1,0 +1,9 @@
+build/
+build_release/
+Testing/
+.cache/
+.clangd/
+.vs/
+.vscode/
+.DS_Store
+CMakeFiles

@@ -1,0 +1,26 @@
+1. c) When the operator has both a "getter" and "setter" version the two overloads are necessary.
+
+This is because the const version allows for read-only access, while the non-const version allows for modification.
+
+2. b) double &
+
+This is because elems_[n] is a double element of the array, and the operator[] function returns it by reference, allowing for both reading and modifying the element.
+
+3. a) Not const-correct: operator[]() needs a const version so const objects can still be indexed into. The returned value must not be modifiable, however.
+
+To make the vec3 class const-correct, you need to provide a const version of operator[]() that returns a const reference to the element, ensuring that const objects can be indexed but not modified.
+
+4. d) Fill the 3 elems of v via a standard algorithm. return "is" for chaining. 
+
+It correctly fills the array with the three elements from the input stream by using std::copy with std::istream_iterator to read the three doubles into v.elems_. 
+It returns the input stream is, which allows for chaining of input operations, a common and expected behavior for stream operators.
+
+Why other options aren't correct:
+a: Does not return is, breaking the convention of allowing chaining.
+b: Takes vec3 v by value, which means it modifies a copy rather than the original object, and it also returns is, which is correct for chaining but inefficient due to copying.
+c: Has an off-by-one error (elems_[1], elems_[2], elems_[3] instead of elems_[0], elems_[1], elems_[2]), which would result in undefined behavior.
+
+5. a) Necessary: every implementation must use elems_, which is private -- can only access this via friendship.
+
+The operator>> implementation needs direct access to the private array elems_ of vec3. Without friendship, the operator cannot access elems_ directly since it is a private member of the class.
+

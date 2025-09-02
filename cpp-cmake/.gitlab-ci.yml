@@ -1,0 +1,16 @@
+image: danger89/cmake:latest
+
+stages:
+  - checks
+
+compiling:
+  stage: checks
+  script:
+    - cmake -B build 
+    - cd build
+    - make
+
+#testing:
+#  stage: checks
+#    - cd build
+#    - ctest
